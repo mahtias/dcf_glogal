@@ -1,0 +1,220 @@
+
+<template>
+  <div>
+  
+       
+    
+      <!-- End Page Header -->
+            <!-- Default Light Table -->
+           <div class="container-fluid">
+        <div class="quick-actions_homepage" style="position: center;">
+      <ul class="quick-actions" >
+        
+        <li class="bg_lb" title="Nombre total de mission global">
+             <a href="">
+            <i class="icon-dashboard"></i> <span class="label label-important">
+              {{nombre_total_mission_globale}}
+        </span> Total Mission. </a>  </li>
+
+        <li class="bg_lg " title="Nombre total de mission par unite administrative">
+             <a href="">
+             <i class="icon-eject"></i> <span class="label label-important">
+               {{nombre_total_mission_ua}}</span>
+                 Total par UA
+             </a> </li>
+        <li class="bg_ly" title="Nombre total de mission par acteur ">
+             <a href="">
+        <i class="icon-user"></i><span class="label label-important">
+          {{nombre_total_mission_acteur}}
+            </span>  Total par acteur. </a> </li>
+         </ul>
+        </div>
+        <hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+             <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>Autres informations</h5>
+             <div align="right">
+        Rechercher: <input type="text" v-model="search">
+
+          </div>
+             
+          </div>
+         
+           <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                   
+                  <th>Mode de paiment</th>
+                   <th>Frais de restauration</th>
+                  <th>Frais d'hebergement</th>
+                  <th>frais de deplacement</th>
+                  <th>Date visa du cf</th>
+                  <th>Decision du cf</th>
+                  <th>Motif</th>
+                  <th>Signataire</th>
+                  <th>fichier joint</th>
+                   <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="odd gradeX" v-for="mission in 
+                localisationsFiltre"
+                 :key="mission.id">
+
+                  <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.mode_paiement || 'Non renseigné'}}</td> 
+                 <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.frais_restauration || 'Non renseigné'}}</td>
+
+                    <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.frais_hebergement || 'Non renseigné'}}</td>
+
+                      <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.frais_deplacement || 'Non renseigné'}}</td>
+
+                 <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.date_visa_cf || 'Non renseigné'}}</td>
+                      
+                       <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.decision_cf || 'Non renseigné'}}</td>
+
+                       <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.motif || 'Non renseigné'}}</td>
+
+                    <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.signataire || 'Non renseigné'}}</td>
+                       <td @dblclick="afficherModalModifierMission(mission.id)">
+                      {{mission.fichier_joint || 'Non renseigné'}}</td>
+                  <td>
+
+
+              <div class="btn-group">
+              <button @click.prevent="supprimerMission(mission.id)"  class="btn btn-danger ">
+                <span class=""><i class="icon-trash"></i></span></button>
+             
+            </div>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div v-if="localisationsFiltre.length">
+            </div>
+            <div v-else>
+              <div align="center">
+                <h6 style="color:red;">Aucune  mission enregistrée </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+              </div>
+            </div>
+
+                <!-- <fab :actions="fabActions"
+                main-icon="apps"
+       @cache="AllerAPageAjouterMission"
+        bg-color="green"
+
+  ></fab> -->
+
+
+
+
+
+
+
+  </div>
+  
+</template>
+   
+<script>
+//import axios from '../../../../urls/api_parametrage/api'
+import {mapGetters, mapActions} from 'vuex'
+export default {
+  
+  data() {
+    return {
+        fabActions: [
+              {
+                  name: 'cache',
+                  icon: 'add'
+              },
+              // {
+              //     name: 'alertMe',
+              //     icon: 'add_alert'
+              // }
+          ],
+     formData:{},
+     editMission:{},
+          
+
+            search:""
+    };
+  },
+
+// mounted(){
+//  this.formData = this.missions.find(
+//    mission => mission.id == this.$router.params.id
+//  )
+// },
+ 
+  created() {
+    //  this.getStructureActivite()
+  },
+  computed: {
+// methode pour maper notre guetter
+   ...mapGetters('suivi_controle_budgetaire', ["categories_missions", "getMissionPersonnaliser",
+    "nombre_total_mission_acteur",
+      "nombre_total_mission_globale",
+      "nombre_total_mission_ua"]) ,
+   
+   
+    // methode pour trier un item
+            localisationsFiltre(){
+
+     const searchTerm = this.search.toLowerCase();
+
+return this.getMissionPersonnaliser.filter((item) => {
+  
+     return item.objet.toLowerCase().includes(searchTerm) 
+     || item.type_mission.toLowerCase().includes(searchTerm)
+
+   
+  
+
+   }
+)
+   }
+  },
+
+  methods: {
+    // methode pour notre action
+   ...mapActions('suivi_controle_budgetaire', ['getMission','supprimerMission']),   
+   
+    AllerAPageAjouterMission(){
+    
+    this.$router.push({
+        name: 'AjouterMission'
+    })
+    },
+
+// afficher modal modifier
+afficherModalModifierMission(id){
+
+ this.$router.push({
+   path:"/modifier-mission/" + id
+ });
+
+        
+ },
+
+
+  }
+};
+</script>
+
