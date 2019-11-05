@@ -36,7 +36,7 @@ import ActiviteRoutesAdoni from "./parametres_generaux/ActiviteRoutesAdoni";
 import MissionRoutes from './suivi_control/MissionRoutes';
 
 // routes du tableau de bord suivi mission
-import IndicateurRoutes from './suivi_control/IndicateurRoutes';
+import TableauDeBordMissionsRoutes from './suivi_control/TableauDeBordMissionsRoutes';
 
 // authentitification
 import AuthRoutes from "./auth/AuthRoutes";
@@ -60,7 +60,7 @@ const regroupementDesRoutes = [
   BudgetaireRoutesAdoni,
   ActiviteRoutesAdoni,
 MissionRoutes,
-IndicateurRoutes
+TableauDeBordMissionsRoutes
 ];
 const routes = [].concat(...regroupementDesRoutes);
 

@@ -269,9 +269,9 @@
               <div class="controls">
                 <select v-model="editMission.decision_cf" class="span">
                   <option value="choisir">--veillez selectionner la decision--</option>
-                  <option value="validée">Validée</option>
-                  <option value="differée">Differée</option>
-                   <option value="rejetée">rejetée</option>
+                  <option value="0">Validée</option>
+                  <option value="1">Differée</option>
+                   <option value="2">rejetée</option>
                 </select>
               </div>
             </div>
@@ -354,27 +354,27 @@ export default {
     
 
         editMission: {
-                objet:"",
-             date_mission: "",
-             categorie_missions_id:"",
-             numero_autorisation:"",
-             destination:"",
-             type_mission:"",
-             numero_ccm:"",
-             moyen_transport:"",
-             itineraire_retenu:"",
-             montant:"",
-             mode_paiement:"",
-             duree:"",
-             date_retour:"",
-             date_depart:"",
-             frais_deplacement:"",
-             frais_hebergement:"",
-             fichier_joint:"",
-             signataire:"",
-             decision_cf:"",
-             date_visa_cf:"",
-             motif:""
+            //     objet:"",
+            //  date_mission: "",
+            //  categorie_missions_id:"",
+            //  numero_autorisation:"",
+            //  destination:"",
+            //  type_mission:"",
+            //  numero_ccm:"",
+            //  moyen_transport:"",
+            //  itineraire_retenu:"",
+            //  montant:"",
+            //  mode_paiement:"",
+            //  duree:"",
+            //  date_retour:"",
+            //  date_depart:"",
+            //  frais_deplacement:"",
+            //  frais_hebergement:"",
+            //  fichier_joint:"",
+            //  signataire:"",
+            //  decision_cf:"",
+            //  date_visa_cf:"",
+            //  motif:""
             
         },
            

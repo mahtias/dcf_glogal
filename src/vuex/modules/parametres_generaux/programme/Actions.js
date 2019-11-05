@@ -39,14 +39,14 @@ export function mdifierStructureBudgetaire({commit}, programme){
 
 // supprimer structure programme
 export function supprimerStructureBudgetaire({commit}, id){
-    let conf = confirm('Voulez-vous vraiment supprimer?')
    
-    if(conf){
+    $this.$app.$dialog
+    .confirm("voulez-vous vraiment supprimer?.")
+    .then(dialog => {
         commit('SUPPRIMER_STRUCTURE_BUDGETAIRE', id)
-        axios.delete('/delete_document_structure_budgetaires/' + id)
-          
+        axios.delete('/delete_document_structure_budgetaires/' +id).then(() => dialog.close())
 
-    }
+    })
 }
 
 // get all of type financement
@@ -76,9 +76,12 @@ export function modifierTypeFinancement({commit},type_financement){
 }
 // supprimer type de financement
 export function supprimerTypeFinancement({commit}, id){
-    let conf= confirm('voulez-vous vraiment supprimer?')
-    if(conf){
-        commit('SUPPRIMER_TYPE_FINANCEMENT',id)
-        axios.delete('/delete_type_financement/' +id)
-    }
+   
+    $this.$app.$dialog
+    .confirm("voulez-vous vraiment supprimer?.")
+    .then(dialog => {
+        commit('SUPPRIMER_TYPE_FINANCEMENT', id)
+        axios.delete('/delete_type_financement/' +id).then(() => dialog.close())
+
+    })
 }

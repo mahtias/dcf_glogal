@@ -29,14 +29,14 @@ export  function ajouterTitre({commit}, objetAjoute){
 
 // supprimer titre
 export function supprimerTitre({commit}, id){
-    let conf = confirm("Voulez vouz vraiment supprimer ?")
-
-    if(conf){
-        commit('SUPPRIMER_TITRE', id)
-        axios.delete('/delete_titre/' + id)
-
-
-    }
+  
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_TITRE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/delete_titre/' + id).then(() => dialog.close() )   
+    })
 }
 
 // modifier titre 
@@ -94,14 +94,14 @@ export function modifierExerciceBudgetaire({commit}, exercice_budgetaire) {
 // supprimer exercice budgetaire
 
 export function supprimerExerciceBudgetaire({commit}, id){
-    let conf = confirm('Voulez-vous vraiment supprimer?')
-   
-    if(conf){
-        commit('SUPPRIMER_EXERCICE_BUDGETAIRE', id)
-        axios.delete('/delete_exercice_budgetaire/' + id)
-          
-
-    }
+  
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_EXERCICE_BUDGETAIRE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/delete_exercice_budgetaire/' + id).then(() => dialog.close() )   
+    })
 }
 
 // get all nature de section
@@ -141,14 +141,14 @@ export function modifierNatureSection({commit}, objetModifie){
 // supprimer nature de setion
 
 export function supprimerNatureSection({commit}, id){
-    let conf = confirm('Voulez-vous vraiment supprimer?')
-   
-    if(conf){
-        commit('SUPPRIMER_NATURE_SECTION', id)
-        axios.delete('/supprimer_nature_section/' + id)
-          
-
-    }
+  
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_NATURE_SECTION', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/supprimer_nature_section/' + id).then(() => dialog.close() )   
+    })
 }
 
 
@@ -195,14 +195,15 @@ export function modifierSection({commit}, objetModifie){
 // supprimer de setion
 
 export function supprimerSection({commit}, id){
-    let conf = confirm('Voulez-vous vraiment supprimer?')
-   
-    if(conf){
-        commit('SUPPRIMER_SECTION', id)
-        axios.delete('/supprimer_section/' + id)
-          
-
-    }
+  
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_SECTION', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/supprimer_section/' + id).then(() => dialog.close() )   
+    })
+    
 }
 
 
@@ -246,11 +247,14 @@ export function modifierStructureProgramme({commit}, objetModifie){
  // souprime structure programme
  export function supprimerStructureProgramme({commit},id) {
  
-      let conf = confirm('voulez-vous vraiment supprimer?')
-  if(conf){
-       commit('SUPPRIMER_STRUCTURE_PROGRAMME', id)
-       axios.delete('/supprimer_Structure_Programme/'+ id)
-  }
+
+  this.$app.$dialog
+  .confirm("Voulez vouz vraiment supprimer ?.")
+  .then(dialog => {
+     commit('SUPPRIMER_STRUCTURE_PROGRAMME', id)
+    // // dialog.loading(false) // stops the proceed button's loader
+      axios.delete('/supprimer_Structure_Programme/' + id).then(() => dialog.close() )   
+  })
  }
 
 
@@ -287,11 +291,14 @@ export function modifierPlanProgramme({commit}, nouveauObjet){
 }
 // supprimer le plan programme
 export function supprimerPlanProgramme({commit}, id){
- let conf = confirm('voulez-vous vraiment supprimer?')
- if(conf){
-     commit('SUPPRIMER_PLAN_PROGRAMME', id)
-     axios.delete('/supprimer_Plan_Programme/', + id)
- }
+
+ this.$app.$dialog
+ .confirm("Voulez vouz vraiment supprimer ?.")
+ .then(dialog => {
+    commit('SUPPRIMER_PLAN_PROGRAMME', id)
+   // // dialog.loading(false) // stops the proceed button's loader
+     axios.delete('/supprimer_Plan_Programme/' + id).then(() => dialog.close() )   
+ })
 }
 
 
@@ -333,11 +340,14 @@ commit('AJOUTER_STRUCTURE_ADMINISTRATIVE', response.data)
 
 // supprimer structure administrative
 export function supprimerStructureAdministrative({commit}, id){
-   let conf = confirm('voulez-vous vraiment supprimer?')
-   if(conf){
-       commit('SUPPRIMER_STRUCTURE_ADMINISTRATIVE', id)
-       axios.delete('/supprimer_structure_administrative/', + id)
-   }
+
+   this.$app.$dialog
+   .confirm("Voulez vouz vraiment supprimer ?.")
+   .then(dialog => {
+      commit('SUPPRIMER_STRUCTURE_ADMINISTRATIVE', id)
+     // // dialog.loading(false) // stops the proceed button's loader
+       axios.delete('/supprimer_structure_administrative/' + id).then(() => dialog.close() )   
+   })
 }
  
   
@@ -374,11 +384,14 @@ export function modifierServiceGestionnaire({commit}, nouveauObjet){
 }
 // supprimer service gestionnaire
 export function supprimerServiceGestionnaire({commit}, id){
-    let conf = confirm('voulez-vous vraiment supprimer?')
-    if(conf){
-        commit('SUPPRIMER_SERVICE_GESTIONNAIRE', id)
-        axios.delete('/supprimer_service_gestionnaire/', + id)
-    }
+   
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_SERVICE_GESTIONNAIRE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/supprimer_service_gestionnaire/' + id).then(() => dialog.close() )   
+    })
  }
 
 
@@ -413,11 +426,14 @@ export function modifierStructureGeographique({commit}, objetModifie){
 }
 // supprimer struture geographique
 export function supprimerStructureGeographique({commit}, id){
-    let conf = confirm('voulez-vous vraiment supprimer?')
-        if(conf){
-            commit('SUPPRIMER_STRUCTURE_GEOGRAPHIQUE', id)
-            axios.delete('/supprimer_structure_localgeo/' + id)
-        }
+   
+        this.$app.$dialog
+        .confirm("Voulez vouz vraiment supprimer ?.")
+        .then(dialog => {
+           commit('SUPPRIMER_STRUCTURE_GEOGRAPHIQUE', id)
+          // // dialog.loading(false) // stops the proceed button's loader
+            axios.delete('/supprimer_structure_localgeo/' + id).then(() => dialog.close() )   
+        })
 }
 
 
@@ -453,11 +469,14 @@ export function modifierLocalisationGeographique({commit}, objetModifie){
 }
 // supprimer localisation geographique
 export function supprimerLocalisationGeographique({commit}, id){
-    let conf = confirm('voulez-vous vraiment supprimer?')
-        if(conf){
-            commit('SUPPRIMER_LOCALISATION_GEOGRAPHIQUE', id)
-            axios.delete('/supprimer_localisation_geo/' + id)
-        }
+    
+        this.$app.$dialog
+        .confirm("Voulez vouz vraiment supprimer ?.")
+        .then(dialog => {
+           commit('SUPPRIMER_LOCALISATION_GEOGRAPHIQUE', id)
+          // // dialog.loading(false) // stops the proceed button's loader
+            axios.delete('/supprimer_localisation_geo/' + id).then(() => dialog.close() )   
+        })
 }
 
 
@@ -478,7 +497,8 @@ export  function ajouterChapitre({commit}, nouveauObjet){
  axios.post('/ajouter_chapitre',{
     code:nouveauObjet.code,
     libelle:nouveauObjet.libelle,
-    localisation_geographique_id:nouveauObjet.localisation_geographique_id
+    localisation_geographique_id:nouveauObjet.localisation_geographique_id,
+    servicegestionnaires_id:nouveauObjet.servicegestionnaires_id
  }).then(response =>{
      commit('AJOUTER_CHAPITRE', response.data)
  }).catch(error => console.log(error))
@@ -486,22 +506,25 @@ export  function ajouterChapitre({commit}, nouveauObjet){
 // modifier chapitre
 export function modifierChapitre({commit}, nouveauObjet){
  axios.put('/modifier_chapitre/'+ nouveauObjet.id,{
-     code:nouveauObjet.code,
+    codeChapitre:nouveauObjet.codeChapitre,
      libelle:nouveauObjet.libelle,
- localisation_geographique_id:nouveauObjet.localisation_geographique_id
+ localisation_geographique_id:nouveauObjet.localisation_geographique_id,
+ servicegestionnaires_id:nouveauObjet.servicegestionnaires_id
+ 
  }).then( resultat =>{
      commit('MODIFIER_CHAPITRE',resultat.data)
  })
 }
 // supprimer chapitre
 export function supprimerChapitre({commit}, id){
-    let conf = confirm("Voulez vouz vraiment supprimer ?")
-    if(conf){
-        commit('SUPPRIMER_CHAPITRE', id)
-        axios.delete('/supprimer_chapitre/'+ id)
-
-
-    }
+  
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_CHAPITRE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/supprimer_chapitre/' + id).then(() => dialog.close() )   
+    })
 }
 
 
@@ -536,10 +559,13 @@ export function modifierGrandeNature({commit}, objetModifie){
 }
 // supprimer grande nature
 export function supprimerGrandeNature({commit}, id){
-    let conf = confirm('voulez-vous vraiment supprimer?')
-        if(conf){
-            commit('SUPPRIMER_GRANDE_NATURE', id)
-            axios.delete('/delete_grande_nature/' + id)
-        }
+   
+        this.$app.$dialog
+        .confirm("Voulez vouz vraiment supprimer ?.")
+        .then(dialog => {
+           commit('SUPPRIMER_GRANDE_NATURE', id)
+          // // dialog.loading(false) // stops the proceed button's loader
+            axios.delete('/delete_grande_nature/' + id).then(() => dialog.close() )   
+        })
 }
 

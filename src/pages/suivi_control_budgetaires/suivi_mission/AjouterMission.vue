@@ -111,13 +111,18 @@
 
                               <td>         
                   
-               <div class="control-group">
+                <div class="control-group">
               <label class="control-label">Moyen de transport:</label>
               <div class="controls">
-                <input type="text" v-model="formData.moyen_transport" 
-                class="span"  />
-                </div>
-                  </div>
+                <select v-model="formData.moyen_transport" class="span">
+        <option value="choisir">--Selectionner le moyen de transport--</option>
+                <option value="vehicule">Vehicule</option>
+                  <option value="avion">Avion</option>
+                  <option value="train">Train</option>
+                  
+                </select>
+              </div>
+            </div>
                     </td>
 
                     <td>           
@@ -131,7 +136,7 @@
                   
                 </select>
               </div>
-            </div>
+            </div>                        
                           <td>           
                <div class="control-group">
               <label class="control-label">Date de mission:</label>
@@ -180,11 +185,22 @@
             </div>
                       </td>
 
+
+                     <td> 
+            <div class="control-group">
+              <label class="control-label">Cout total:</label>
+              <div class="controls">
+     <input type="text" v-model="formData.cout_total" class="span" 
+     placeholder="Saisir le cout total" />
+              </div>
+            </div>
+                      </td> 
+                    
                        <td>         
                <div class="control-group">
               <label class="control-label">Fichier joint:</label>
               <div class="controls">
-          <input type="file" id="file" ref="myFiles" @change="previewFiles" multiple  />
+          <input type="file" id="file" @change="onFichierChange"   />
                 </div>
                   </div>
                      </td>
@@ -335,9 +351,9 @@
               <div class="controls">
                 <select v-model="formData.decision_cf" class="span">
                   <option value="choisir">--veillez selectionner la decision--</option>
-                  <option value="validée">Validée</option>
-                  <option value="differée">Differée</option>
-                   <option value="rejetée">rejetée</option>
+                  <option value="0">Validée</option>
+                  <option value="1">Differée</option>
+                   <option value="2">rejetée</option>
                 </select>
               </div>
             </div>
@@ -415,30 +431,31 @@ export default {
      
         formData : {
 
-                   objet:"",
-             date_mission: "",
-             categorie_missions_id:"",
-             numero_autorisation:"",
-             destination:"",
-             type_mission:"",
-             numero_ccm:"",
-             moyen_transport:"",
-             itineraire_retenu:"",
-             montant:"",
-             mode_paiement:"",
-             duree:"",
-             date_retour:"",
-             date_depart:"",
-             frais_deplacement:"",
-             frais_hebergement:"",
-             fichier_joint:"",
-             signataire:"",
-             decision_cf:"",
-             date_visa_cf:"",
-             motif:"" ,
-             acte_personnel_id:"",
-             ua_id:"" ,
-             exercice_budgetaire_id:""
+            //        objet:"",
+            //  date_mission: "",
+            //  cout_total:"",
+            //  categorie_missions_id:"",
+            //  numero_autorisation:"",
+            //  destination:"",
+            //  type_mission:"",
+            //  numero_ccm:"",
+            //  moyen_transport:"",
+            //  itineraire_retenu:"",
+            //  montant:"",
+            //  mode_paiement:"",
+            //  duree:"",
+            //  date_retour:"",
+            //  date_depart:"",
+            //  frais_deplacement:"",
+            //  frais_hebergement:"",
+            //  fichier_joint:"",
+            //  signataire:"",
+            //  decision_cf:"",
+            //  date_visa_cf:"",
+            //  motif:"" ,
+            //  acte_personnel_id:"",
+            //  ua_id:"" ,
+            //  exercice_budgetaire_id:""
             
         },
 
@@ -488,9 +505,13 @@ export default {
     // methode pour notre action
    ...mapActions('suivi_controle_budgetaire', ['getMission', 'ajouterMission', 
    'modifierMission','supprimerMission']),  
-   previewFiles() {
-      this.files = this.$refs.myFiles.files;
-    }, 
+
+
+  
+
+    onFichierChange(e){
+      this.formData.fichier_joint = e.target.files[0]
+    },
    
   // fonction pour aller a la page de la liste
     AllerAPageListe(){

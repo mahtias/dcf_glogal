@@ -37,14 +37,15 @@ export function modifierUnite({commit}, objetChange){
 
 // supprimer unite
 export function supprimerUnite({commit}, id){
-    let conf = confirm("Voulez vouz vraiment supprimer ?")
-
-    if(conf){
-        commit('SUPPRIMER_UNITE', id)
-        axios.delete('/supprimer_unite/' + id)
-
-
-    }
+ 
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_UNITE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/supprimer_unite/' + id).then(() => dialog.close() )   
+    })
+    
 }
 
 
@@ -89,13 +90,13 @@ export async function  getZone({commit}) {
  
  // supprimer zone geographique
  export function supprimerZone({commit}, id){
-     let conf = confirm("Voulez vouz vraiment supprimer ?")
- 
-     if(conf){
-         commit('SUPPRIMER_ZONE_GEOGRAPHIQUE', id)
-         axios.delete('/supprimer_zone_geographique/' + id)
- 
- 
-     }
+    
+     this.$app.$dialog
+     .confirm("Voulez vouz vraiment supprimer ?.")
+     .then(dialog => {
+        commit('SUPPRIMER_ZONE_GEOGRAPHIQUE', id)
+       // // dialog.loading(false) // stops the proceed button's loader
+         axios.delete('/supprimer_zone_geographique/' + id).then(() => dialog.close() )   
+     })
  }
  

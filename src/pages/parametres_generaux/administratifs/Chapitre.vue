@@ -10,6 +10,20 @@
         <hr>
     <div class="row-fluid">
       <div class="span12">
+          <div>
+
+                                        <download-excel
+                                            class="btn btn-default pull-right"
+                                            style="cursor:pointer;"
+                                              :fields = "json_fields"
+                                              title="Liste chapitre "
+                                              name ="Liste chapitre"
+                                              worksheet = "chapitre"
+                                            :data="localisationsFiltre">
+                                         <i title="Exporter en excel" class="icon-table"></i>
+
+                                                 </download-excel> 
+                                     </div> <br>
         <div class="widget-box">
              <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5>Liste des chapitres</h5>
@@ -34,13 +48,16 @@
               <tbody>
                 <tr class="odd gradeX" v-for="(chapitre, index) 
                 in localisationsFiltre" :key="chapitre.id">
+                
                   <td @dblclick="afficherModalModifierChapitre(index)">
                     {{chapitre.code || 'Non renseigné'}}</td>
+
                    <td @dblclick="afficherModalModifierChapitre(index)">
                     {{chapitre.libelle || 'Non renseigné'}}</td>
                     
                    <td @dblclick="afficherModalModifierChapitre(index)">
                       {{chapitre.localisation_geographique.libelle || 'Non renseigné'}}</td>
+
                       <td @dblclick="afficherModalModifierChapitre(index)">
                         {{chapitre.service_gestionnaire.libelle || 'Non renseigné'}} </td>
                   <td>
@@ -106,6 +123,7 @@
                 </select>
               </div>
             </div>
+            
             <div class="control-group">
               <label class="control-label">Code:</label>
               <div class="controls">
@@ -203,10 +221,20 @@
 <script>
 //import axios from '../../../../urls/api_parametrage/api'
 import {mapGetters, mapActions} from 'vuex'
+// import {groupBy} from '../../../Repositories/Repository'
 export default {
   
   data() {
     return {
+       json_fields: {
+            'Code': 'code',
+            'Libelle': 'libelle',
+          'localisation':'localisation_geographique.libelle',
+          'service gestionnaire':'  service_gestionnaire.libelle'
+        
+           
+           
+        },
         fabActions: [
               {
                   name: 'cache',
@@ -258,8 +286,8 @@ export default {
 
 return this.chapitres.filter((item) => {
   
-    return item.code.toLowerCase().includes(searchTerm) 
-    || item.libelle.toLowerCase().includes(searchTerm) 
+    return item.libelle.toLowerCase().includes(searchTerm) 
+    // || item.libelle.toLowerCase().includes(searchTerm) 
    
   
 

@@ -43,13 +43,14 @@ export function modifierTypeTexte({ commit }, nouveau) {
 }
 //supprimer
 export function supprimerTypeTexte({ commit }, id) {
-  let conf = confirm("Voulez vous vraiment supprimer ?");
-
-  if (conf) {
-    commit("SUPPRIMER_TYPE_TEXTE", id);
-
-    axios.delete("/supprimer_typetext/" + id);
-  }
+ 
+  this.$app.$dialog
+  .confirm("Voulez vouz vraiment supprimer ?.")
+  .then(dialog => {
+     commit('SUPPRIMER_TYPE_TEXTE', id)
+    // // dialog.loading(false) // stops the proceed button's loader
+      axios.delete('/supprimer_typetext/' + id).then(() => dialog.close() )   
+  })
 }
 
 /*fin action type texte */
@@ -97,13 +98,15 @@ export function modifierUniteAdministrative({ commit }, nouveau) {
 }
 //supprimer Unite administrative
 export function supprimerUniteAdministrative({ commit }, id) {
-  let conf = confirm("Voulez vous vraiment supprimer ?");
-
-  if (conf) {
-    commit("SUPPRIMER_UNITE_ADMINISTRATIVE", id);
-
-    axios.delete("/supprimer_unite_administrative/" + id);
-  }
+ 
+  this.$app.$dialog
+  .confirm("Voulez vouz vraiment supprimer ?.")
+  .then(dialog => {
+     commit('SUPPRIMER_UNITE_ADMINISTRATIVE', id)
+    // // dialog.loading(false) // stops the proceed button's loader
+      axios.delete('/supprimer_unite_administrative/' + id).then(() => dialog.close() )   
+  })
+  
 }
 /*fin action Unite administrative */
 
@@ -154,12 +157,14 @@ export function modifierArchivageDocument({ commit }, nouveau) {
 //supprimer archivage note se service
 
 export function supprimerArchivageDocument({ commit }, id) {
-  let conf = confirm("Voulez vous vraiment supprimer ?");
 
-  if (conf) {
-    axios.delete("/supprimer_archivage_document/" + id);
-    commit("SUPPRIMER_ARCHIVAGE_DOCUMENT", id);
-  }
+  this.$app.$dialog
+  .confirm("Voulez vouz vraiment supprimer ?.")
+  .then(dialog => {
+     commit('SUPPRIMER_ARCHIVAGE_DOCUMENT', id)
+    // // dialog.loading(false) // stops the proceed button's loader
+      axios.delete('/supprimer_archivage_document/' + id).then(() => dialog.close() )   
+  })
 }
 // afficher liste des archivage note se service
 /*fin action archivage note se service */

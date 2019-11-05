@@ -11,7 +11,7 @@
         <li class="bg_lb" title="Nombre total de mission global">
              <a href="#">
             <i class="icon-dashboard"></i> <span class="label label-important">{{nombreTotalDeTouteMissions}}
-        jrs</span> Nombre total de missions. </a> </li>
+        </span> Nombre total de missions. </a> </li>
               
         <li class="bg_lg " title="Duree moyenne de mission">
              <a href="#">
@@ -21,27 +21,33 @@
 
         <li class="bg_ly" title="Montant total des missions ">
             <a href="#">
-        <i class="icon-user"></i><span class="label label-success">{{montantTotalDeToutesLesMissions}}
-           FCFA </span> Montant total de missions . </a> </li>
+        <i class="icon-user"></i><span class="label label-success">{{formatageSomme(parseFloat(montantTotalDeToutesLesMissions))}}
+           </span> Montant total de missions . </a> </li>
 
         <li class="bg_lo" title="cout moyen des billets d'avion globale de mission">
              <a href="#">
-             <i class="icon-th"></i><span class="label label-warning">{{coutMoyenDeBilletAvionMissions}}
-                FCFA</span> Cout moyen des billets d'avion.</a> </li>
+             <i class="icon-th"></i><span class="label label-warning">{{formatageSomme(parseFloat(coutMoyenDeBilletAvionDeMissions))}}
+              </span> Cout moyen des billets d'avion.</a> </li>
 
-        <li class="bg_ls" title="Taux de rejet de dossier des missions">
+        <li class="bg_ls" title="Taux de dossiers de missions rejetés">
              <a href="#">
             <i class="icon-fullscreen"></i><span class="label label-success">{{tauxDossierRejetMissions}}
                 %</span>
-             Taux de dossiers rejetés.</a> </li>
+             Tx de dossiers de m. rejetés.</a> </li>
              
-              <li class="bg_lb " title="taux de valider de dossier des missions"> 
+              <li class="bg_lb " title="taux de dossiers de missions validés"> 
                 <a href="#"> <i class="icon- icon-pencil"></i><span class="label label-success">{{tauxValiderDossierMissions}}
-               % </span>  taux de dossiers valider</a> </li>
+               % </span>  tx de dossiers de m. validés</a> </li>
 
-                    <li class="bg_lr" title="taux de differée de dossier des missions"> 
+                    <li class="bg_lr" title="taux de dossiers de missions differés"> 
                 <a href="#"> <i class="icon-info-sign"></i><span class="label label-primary">{{tauxDiffererDossiermission}}
-               % </span>  taux de dossiers differées </a> </li>
+               % </span>  tx de dossiers m. differés </a> </li>
+
+
+
+                 <li class="bg_lg" title="cout moyen de mission "> 
+                <a href="#"> <i class="icon-info-sign"></i><span class="label label-primary">{{formatageSomme(parseFloat(coutMoyenDeMissions))}}
+             </span> cout moyen de missions </a> </li>
       
 
         
@@ -55,6 +61,7 @@
   
 <script>
 import { mapGetters } from "vuex";
+import {formatageSomme} from '../../../Repositories/Repository'
 export default {
   data() {
     return {
@@ -72,10 +79,11 @@ export default {
       "nombreTotalDeTouteMissions",
       "montantTotalDeToutesLesMissions",
       "dureeMoyenneDeTouteLesMissions",
-      "coutMoyenDeBilletAvionMissions",
+      "coutMoyenDeBilletAvionDeMissions",
       "tauxDossierRejetMissions",
       "tauxValiderDossierMissions",
-      "tauxDiffererDossiermission"
+      "tauxDiffererDossiermission",
+      "coutMoyenDeMissions"
  
 
       // "nbreArchivageNotes"
@@ -93,7 +101,9 @@ export default {
     //   });
     // }
   },
-  methods: {}
+  methods: {
+    formatageSomme:formatageSomme
+  }
 };
 </script>
 

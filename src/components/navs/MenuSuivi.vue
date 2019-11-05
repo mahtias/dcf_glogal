@@ -218,34 +218,14 @@
         >
           <i class="icon icon-user"></i>
           <span class="text">Out put</span>
-          <b class="caret"></b>
+          
         </a>
         
       </li>
 
   <!-- indicateur
       -->
-       <li class="dropdown" id="indicateur">
-        <a
-          title="Indicateur"
-          href="#"
-          data-toggle="dropdown"
-          data-target="#indicateur" 
-          class="dropdown-toggle">
-          <i class="icon icon-user"></i>
-          <span class="text"> Indicateur</span>
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li class="divider"></li>
-          <li>
-            <router-link :to="{name: 'Indicateur'}" tag="a">
-              <i class="icon-key"></i> Indicateur
-            </router-link>
-          
-          </li>
-        </ul>
-      </li>
+       
       <!-- Généraux
       -->
          <li class="dropdown" id="bord">
@@ -262,12 +242,12 @@
         </a>
         <ul class="dropdown-menu">
           <li class="divider"></li>
-          <!-- <li>
-            <router-link :to="{name: 'TableauDeBord'}" tag="a">
+          <li>
+            <router-link :to="{name: 'TableauDeBordMissions'}" tag="a">
               <i class="icon-key"></i>tableau de bord
             </router-link>
           
-          </li> -->
+          </li>
         </ul>
       </li>
     </ul>

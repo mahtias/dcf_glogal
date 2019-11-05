@@ -10,6 +10,20 @@
         <hr>
     <div class="row-fluid">
       <div class="span12">
+                                     <div>
+
+                                        <download-excel
+                                            class="btn btn-default pull-right"
+                                            style="cursor:pointer;"
+                                              :fields = "json_fields"
+                                              title="Liste service gestionnaire "
+                                              name ="Liste service gestionnaire"
+                                              worksheet = "service gestionnaire"
+                                            :data="localisationsFiltre">
+                                         <i title="Exporter en excel" class="icon-table"></i>
+
+                                                 </download-excel> 
+                                     </div> <br>
         <div class="widget-box">
              <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5>Liste service gestionnaires</h5>
@@ -207,6 +221,11 @@ export default {
   
   data() {
     return {
+      json_fields:{
+        'Code':'code',
+        'Libelle':'libelle',
+        'structure administrative':'structure_administrative.libelle'
+      },
         fabActions: [
               {
                   name: 'cache',

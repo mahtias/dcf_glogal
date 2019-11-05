@@ -41,14 +41,14 @@ export function modifierStructureActivite({commit}, activite){
 
 // supprimer structure budgetaire
 export function supprimerStructureActivite({commit}, id){
-    let conf = confirm("Voulez vouz vraiment supprimer ?")
-
-    if(conf){
-        commit('SUPPRIMER_STRUCTURE_ACTIVITE', id)
-        axios.delete('/delete_structure_activite/' + id)
-
-
-    }
+ 
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_STRUCTURE_ACTIVITE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/delete_structure_activite/' + id).then(() => dialog.close() )   
+    })
 }
 
 

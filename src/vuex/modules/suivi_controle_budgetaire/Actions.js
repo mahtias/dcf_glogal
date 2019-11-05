@@ -104,8 +104,9 @@ export  function  getMission({commit}) {
 // ajouter mission
 export function ajouterMission({commit},formData){
     axios.post('/add_mission',formData).then(response => {
-        commit('AJOUTER_MISSION', response.data)
+     //   commit('AJOUTER_MISSION', response.data)
     }).catch(error => console.log(error))
+   // console.log(formData)
 }
 
 // modifier mission

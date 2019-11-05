@@ -42,14 +42,14 @@ export function modifierStructureBudgetaire({commit}, budgetaire){
 
 // supprimer structure budgetaire
 export function supprimerStructureBudgetaire({commit}, id){
-    let conf = confirm("Voulez vouz vraiment supprimer ?")
-
-    if(conf){
-        commit('SUPPRIMER_STRUCTURE_BUDGETAIRE', id)
-        axios.delete('/delete_document_structure_budgetaires/' + id)
-
-
-    }
+  
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_STRUCTURE_BUDGETAIRE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/delete_document_structure_budgetaires/' + id).then(() => dialog.close() )   
+    })
 }
 
 
@@ -97,13 +97,13 @@ export function modifierPlanbudgetaire({commit}, budgetaire) {
 // supprimer plan budgetaire
 
 export function supprimerPlanBudgetaire({commit}, id){
-    let conf = confirm('Voulez-vous vraiment supprimer?')
-   
-    if(conf){
-        commit('SUPPRIMER_PLAN_BUDGETAIRE', id)
-        axios.delete('/delete_plan_budgetaires/' + id)
-          
-
-    }
+  
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_PLAN_BUDGETAIRE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/delete_plan_budgetaires/' + id).then(() => dialog.close() )   
+    })
 }
 

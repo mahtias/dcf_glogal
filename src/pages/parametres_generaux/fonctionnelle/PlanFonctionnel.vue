@@ -10,6 +10,20 @@
         <hr>
     <div class="row-fluid">
       <div class="span12">
+                                              <div>
+
+                                        <download-excel
+                                            class="btn btn-default pull-right"
+                                            style="cursor:pointer;"
+                                              :fields = "json_fields"
+                                              title="Liste plan fonctionnel "
+                                              name ="Liste plan fonctionnel"
+                                              worksheet = "plan fonctionnel"
+                                            :data="localisationsFiltre">
+                                         <i title="Exporter en excel" class="icon-table"></i>
+
+                                                 </download-excel> 
+                                     </div> <br>
         <div class="widget-box">
              <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5>Liste des plans fonctionnelles</h5>
@@ -185,6 +199,12 @@ export default {
   
   data() {
     return {
+      json_fields:{
+       'Code':'code',
+       'Libelle':'libelle',
+       'structure fonctionnelle':'structure_fonctionnelle.libelle'
+
+      },
         fabActions: [
               {
                   name: 'cache',

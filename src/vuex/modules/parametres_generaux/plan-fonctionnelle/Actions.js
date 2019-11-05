@@ -25,14 +25,14 @@ export function ajouterStructureFonctionnelle({commit}, objetAjout){
 }
 // supprimer structure fonctionnelle
 export function supprimerStructureFonctionnelle({commit}, id){
-    let conf = confirm('Voulez-vous vraiment supprimer?')
-   
-    if(conf){
-        commit('SUPPRIMER_STRUCTURE_FONCTIONNELLE', id)
-        axios.delete('/supprimer_Structure_fontionnelle/' + id)
-          
-
-    }
+  
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_STRUCTURE_FONCTIONNELLE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/supprimer_Structure_fontionnelle/' + id).then(() => dialog.close() )   
+    })
 }
 //modifier structure fonctionnelle
 export function modifierStructureFonctionnelle({commit}, source_financement){
@@ -78,9 +78,12 @@ export function modifierPlanFonctionnel({commit},plan_fonctionnel){
 }
 // supprimer plan fonctionnelle
 export function supprimerPlanFonctionnel({commit}, id){
-    let conf= confirm('voulez-vous vraiment supprimer?')
-    if(conf){
-        commit('SUPPRIMER_PLAN_FONCTIONNELLE',id)
-        axios.delete('/supprimer_Planfontionnelle/' +id)
-    }
+    
+    this.$app.$dialog
+    .confirm("Voulez vouz vraiment supprimer ?.")
+    .then(dialog => {
+       commit('SUPPRIMER_PLAN_FONCTIONNELLE', id)
+      // // dialog.loading(false) // stops the proceed button's loader
+        axios.delete('/supprimer_Planfontionnelle/' + id).then(() => dialog.close() )   
+    })
 }

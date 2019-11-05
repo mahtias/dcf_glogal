@@ -1,8 +1,8 @@
 <template>
-  <!--top-Header-menu-->
+
   <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
-      <!--Paramètres administratifs-->
+     
       <li class="dropdown" id="profile-messages">
         <a
           title="Message"
@@ -17,13 +17,7 @@
         </a>
         <ul class="dropdown-menu">
           
-          <!-- <li class="divider"></li>
-          <li>
-            <router-link :to="{name: 'ParametreFonctionnelle'}" tag="a">
-              <i class="icon-check"></i>
-           Nom d'utilisateur
-            </router-link>
-          </li> -->
+         
           <li class="divider"></li>
           <li>
             <a href="login.html">
@@ -35,8 +29,7 @@
         </ul>
       </li>
       
-      <!--Paramètres programmes
-      -->
+      
       <li class="" id="out">
         <a title href="#" class="">
           <i class="icon icon-users"></i>

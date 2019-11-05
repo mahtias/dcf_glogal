@@ -22,11 +22,11 @@
                   <th>Acte personnel</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody>                          
                 <tr class="odd gradeX" >
                   <td >
-                     {{mission.exoBugdet.annee}}</td> 
-                  <td >
+                     {{mission.objetExerciceBudegetaire.annee}}</td> 
+                  <td>
                       {{mission.categorie_mission.libelle || 'Non renseigné'}}</td> 
                  <td >
                       {{mission.objet || 'Non renseigné'}}</td>
@@ -41,10 +41,10 @@
                       {{mission.date_depart || 'Non renseigné'}}</td>
                       
                        <td >
-                      {{mission.exoplans.libelle || 'Non renseigné'}}</td>
+                      {{mission.objetUniteAdministrative.libelle || 'Non renseigné'}}</td>
                             
                     <td >
-                     {{mission.exoDepense.matricule}}</td> 
+                     {{mission.objetActeurDepense.matricule}}</td> 
                     
                 </tr>
               </tbody>
@@ -82,7 +82,7 @@
                  <td >{{formatageSomme(parseFloat(mission.frais_deplacement)) || 'Non renseigné'}}</td>
 
               
-                  <td >  {{mission.date_visa_cf || 'Non renseigné'}}</td>
+                  <td >  {{ formaterDate(mission.date_visa_cf) || 'Non renseigné'}}</td>
                       
                       
                 <td > {{mission.decision_cf || 'Non renseigné'}}</td>
@@ -111,6 +111,8 @@
                   <th>Classe voyage</th>
                   <th>Montant de la mission</th>
                   <th>Destination</th>
+                   <th>Itineraire retenu</th>
+                    <th>Moyen de transport</th>
                 
                 </tr>
               </thead>
@@ -124,18 +126,22 @@
                     
                   <td >{{mission.numero_autorisation || 'Non renseigné'}}</td>
 
-                      <td >
-                      {{mission.numero_ccm || 'Non renseigné'}}</td>
+                    
+                    <td >  {{mission.numero_ccm || 'Non renseigné'}}</td>
 
                 
                      <td > {{mission.classe_voyage || 'Non renseigné'}}</td>
                       
-                       <td >
-                      {{formatageSomme(parseFloat(mission.montant)) || 'Non renseigné'}}</td>
+                      
+                     <td > {{formatageSomme(parseFloat(mission.montant)) || 'Non renseigné'}}</td>
 
-                       <td >
-                      {{mission.destination || 'Non renseigné'}}</td>
+                       
+                     <td > {{mission.destination || 'Non renseigné'}}</td>
 
+                       
+                     <td > {{mission.itineraire_retenu || 'Non renseigné'}}</td>
+                        
+                     <td > {{mission.moyen_transport || 'Non renseigné'}}</td>
                    
                     
                 
@@ -151,6 +157,7 @@
 <script>
 import {mapGetters} from 'vuex'
 import {formatageSomme} from '../../../Repositories/Repository'
+import moment from "moment";
 
 export default {
     data(){
@@ -171,6 +178,12 @@ export default {
   },
   methods:{
     formatageSomme:formatageSomme,
+
+
+    // formater la date
+ formaterDate(date) {
+      return moment(date, "YYYY-MM-DD").format("DD/MM/YYYY");
+    },
   }
 }
 </script>
